@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FactuSoft</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/formatos.css}"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" align="center"/>
+        <div class="contenido" align="center">
+            <br>
+            <h2 th:text="#{cliente.titulo}">Listado de Clientes</h2>
+            <br>
+            <a th:href="@{/cliente/nuevo}" th:text="#{cliente.nuevo}">Nuevo</a>
+            <div th:if="${clientes != null and !clientes.empty}">
+                <br>
+                <table border="5">
+                    <thead>
+                        <tr>
+                            <th th:text="#{cliente.nombre}">Nombre</th>
+                            <th>Apellido1</th>
+                            <th>Apellido2</th>
+                            <th th:text="#{cliente.correo}">Correo</th>
+                            <th th:text="#{cliente.telefono}">Teléfono</th>
+                            <th th:text="#{accion.actualizar}"></th>
+                            <th th:text="#{accion.eliminar}"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${clientes}">
+                            <td th:text="${item.nombre}"></td>
+                            <td th:text="${item.apellido1}"></td>
+                            <td th:text="${item.apellido2}"></td>
+                            <td th:text="${item.correo}"></td>
+                            <td th:text="${item.telefono}"></td>
+                            <td><a th:href="@{/cliente/modificar/} + ${item.idCliente}"
+                                   th:text="#{accion.actualizar}">Modificar</a></td>
+                            <td><a th:href="@{/cliente/eliminar/} + ${item.idCliente}"
+                                   th:text="#{accion.eliminar}">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${clientes == null or clientes.empty}">
+                <p th:text="#{cliente.no_mostrar}"></p>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>

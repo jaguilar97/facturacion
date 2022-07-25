@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org">
+    <head>
+        <title>FactuSoft</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:fragment="header" class="header">
+            <nav class="nav">
+                <a th:href="@{/}" class="logo nav-link">FactuSoft</a>
+            </nav>
+        </header>
+        <ul th:fragment="barraLateral" class="barraLateral">
+        <li class="nav-menu-item">
+            <a th:href="@{/cliente/listado}" class="nav-menu-link nav-link"
+               th:text="#{plantilla.clientes}">Clientes</a>
+        </li>
+        <li class="nav-menu-item">
+            <a th:href="@{/categoria/listado}" class="nav-menu-link nav-link"
+               th:text="#{plantilla.categorias}">Categorías</a>
+        </li>
+        <li class="nav-menu-item">
+            <a th:href="@{/producto/listado}" class="nav-menu-link nav-link">Productos</a>
+        </li>
+    </ul>
+        
+        <footer th:fragment="footer" class="footer">
+            <div>
+                Todos los derechos reservados
+            </div>
+        </footer>
+    </body>
+</html>
