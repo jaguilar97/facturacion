@@ -28,7 +28,12 @@
         
         <footer th:fragment="footer" class="footer">
             <div>
-                Todos los derechos reservados
+                Todos los derechos reservados 2022
+                <a th:href="@{/(lang=es)}">ES</a>
+                <a th:href="@{/(lang=en)}">EN</a>
+                <form method="POST" th:action="@{/logout}" style="display: inline">
+                    <a href="#" onclick="this.parentNode.submit();">Logout</a>
+                </form>
             </div>
         </footer>
     </body>
