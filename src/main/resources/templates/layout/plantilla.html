@@ -13,27 +13,29 @@
             </nav>
         </header>
         <ul th:fragment="barraLateral" class="barraLateral">
-        <li class="nav-menu-item">
+        <form class="nav-menu-item">
             <a th:href="@{/cliente/listado}" class="nav-menu-link nav-link"
                th:text="#{plantilla.clientes}">Clientes</a>
-        </li>
-        <li class="nav-menu-item">
+        </form>
+        <form class="nav-menu-item">
             <a th:href="@{/categoria/listado}" class="nav-menu-link nav-link"
                th:text="#{plantilla.categorias}">Categorías</a>
-        </li>
-        <li class="nav-menu-item">
-            <a th:href="@{/producto/listado}" class="nav-menu-link nav-link">Productos</a>
-        </li>
+        </form>
+        <form class="nav-menu-item">
+            <a th:href="@{/producto/listado}" class="nav-menu-link nav-link"
+               th:text="#{plantilla.productos}"></a>
+        </form>
+        <form method="POST" th:action="@{/logout}" class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link" onclick="this.parentNode.submit();"
+               th:text="#{logout.logout}">Logout</a>
+        </form>
     </ul>
         
         <footer th:fragment="footer" class="footer">
             <div>
                 Todos los derechos reservados 2022
-                <a th:href="@{/(lang=es)}">ES</a>
-                <a th:href="@{/(lang=en)}">EN</a>
-                <form method="POST" th:action="@{/logout}" style="display: inline">
-                    <a href="#" onclick="this.parentNode.submit();">Logout</a>
-                </form>
+                <a th:href="@{/(lang=es)}" class="nav-link-footer">ES |</a>
+                <a th:href="@{/(lang=en)}" class="nav-link-footer"> EN</a>
             </div>
         </footer>
     </body>

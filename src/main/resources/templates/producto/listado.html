@@ -35,6 +35,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <br>
+                <br>
+                <div>
+                    <a th:href="@{/}" th:text="#{accion.regresar}">Regresar</a>
+                </div>
             </div>
             <div th:if="${productos == null or productos.empty}">
                 <p th:text="#{producto.no_mostrar}"></p>
