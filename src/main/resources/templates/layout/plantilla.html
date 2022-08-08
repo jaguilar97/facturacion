@@ -13,24 +13,36 @@
             </nav>
         </header>
         <ul th:fragment="barraLateral" class="barraLateral">
-        <form class="nav-menu-item">
-            <a th:href="@{/cliente/listado}" class="nav-menu-link nav-link"
-               th:text="#{plantilla.clientes}">Clientes</a>
-        </form>
-        <form class="nav-menu-item">
-            <a th:href="@{/categoria/listado}" class="nav-menu-link nav-link"
-               th:text="#{plantilla.categorias}">Categorías</a>
-        </form>
-        <form class="nav-menu-item">
-            <a th:href="@{/producto/listado}" class="nav-menu-link nav-link"
-               th:text="#{plantilla.productos}"></a>
-        </form>
-        <form method="POST" th:action="@{/logout}" class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link" onclick="this.parentNode.submit();"
-               th:text="#{logout.logout}">Logout</a>
-        </form>
-    </ul>
-        
+            <form class="nav-menu-item">
+                <a th:href="@{/cliente/listado}" class="nav-menu-link nav-link"
+                   th:text="#{plantilla.clientes}">Clientes</a>
+            </form>
+            <form class="nav-menu-item">
+                <a th:href="@{/categoria/listado}" class="nav-menu-link nav-link"
+                   th:text="#{plantilla.categorias}">Categorías</a>
+            </form>
+            <form class="nav-menu-item">
+                <a th:href="@{/producto/listado}" class="nav-menu-link nav-link"
+                   th:text="#{plantilla.productos}"></a>
+            </form>
+            <form class="nav-menu-item">
+           <!--     //<a href="#"class="nav-menu-link nav-link" th:href="@{/inventario/listadoInventario}" class="nav-menu-link nav-link"
+                   th:text="#{plantilla.inventario}">
+                    Inventario
+                </a>    -->
+            
+          
+            <a th:href="@{/inventario/listadoInventario}">view</a>
+             
+
+
+            </form>
+            <form method="POST" th:action="@{/logout}" class="nav-menu-item">
+                <a href="#" class="nav-menu-link nav-link" onclick="this.parentNode.submit();"
+                   th:text="#{logout.logout}">Logout</a>
+            </form>
+        </ul>
+
         <footer th:fragment="footer" class="footer">
             <div>
                 Todos los derechos reservados 2022

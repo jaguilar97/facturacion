@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FactuSoft</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/formatos.css}"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" align="center"/>
+        <div class="contenido" align="center">
+            <br>
+            <h2 th:text="#{inventario.titulo}">Inventario</h2>
+            <br>
+            <a th:href="@{/inventario/nuevo}" th:text="#{inventario.nuevo}">Nuevo</a>
+            <div th:if="${inventario != null and !inventario.empty}">
+                <br>
+                <table border="5">
+                    <thead>
+                        <tr>
+                            <th th:text="#{inventario.articulo}">Articulo</th>
+                            <th th:text="#{inventario.nombreart}">Nombre del artuculo</th>
+                            <th th:text="#{inventario.cantidad}">Cantidad</th>
+                            <th th:text="#{inventario.codigo}">Codigo</th>
+                            <th th:text="#{accion.actualizar}"></th>
+                            <th th:text="#{accion.eliminar}"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${inventario}">
+                            <td th:text="${item.articulo}"></td>
+                            <td th:text="${item.nombreart}"></td>
+                            <td th:text="${item.cantidad}"></td>
+                            <td th:text="${item.codigo}"></td>
+                            <td><a th:href="@{/inventario/modificar/} + ${item.idInventario}"
+                                   th:text="#{accion.actualizar}">Modificar</a></td>
+                            <td><a th:href="@{/inventario/eliminar/} + ${item.idInventario}"
+                                   th:text="#{accion.eliminar}">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <div>
+                    <a th:href="@{/}" th:text="#{accion.regresar}">Regresar</a>
+                </div>
+            </div>
+
+            <div th:if="${inventario == null or inventario.empty}">
+                <p th:text="#{inventario.no_mostrar}"></p>
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>

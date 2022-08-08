@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>FactuSoft</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/formatos.css}"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" />
+
+        <div class="contenido" align="center">
+            <br>
+            <h2 th:text="#{sistemadeEnvios.datos}">Datos del Producto</h2>
+            <br>
+            <form th:action="@{/sistemadeEnvios/guardar}"
+                  method="post"
+                  th:object="${sistemadeEnvios}">
+                <input type="hidden" name="idsistemadeEnvios" th:field="*{idsistemadeEnvios}" />              
+                <br>
+                <br>
+                <label for="nombre" th:text="#{sistemadeEnvios.nombre}">Nombre del cliente: </label>
+                <input type="text" id="nombre" name="nombre" th:field="*{nombre}" />
+                <br>
+                <br>
+                <label for="numeroCompra" th:text="#{sistemadeEnvios.numeroCompra}"> Numero de compra: </label>
+                <input type="text" id="numeroCompra" name="numeroCompra" th:field="*{numeroCompra}" />
+                <br>
+                <br>
+                <label for="destino" th:text="#{inventario.destino}"> Destino: </label>
+                <input type="destino" id="destino" name="destino" th:field="*{destino}" />
+                <br>
+                <br>
+                <input type="submit" name="Guardar" th:value="#{accion.guardar}" />
+            </form>
+            <br>
+            <br>
+                <div>
+                    <a th:href="@{/sistemadeEnvios/listado}" th:text="#{accion.regresar}">Regresar</a>
+                </div>  
+        </div>
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>
