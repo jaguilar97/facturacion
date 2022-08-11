@@ -1,46 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>FactuSoft</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" th:href="@{/css/formatos.css}" />
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header" />
-
-        <div class="contenido">
-            <h2 th:text="#{producto.datos}">Datos Producto</h2>
-            <a th:href="@{/producto/modificar}" th:text="#{accion.regresar}">Regresar</a>
-            <br/>
-            <br/>
-            <form th:action="@{/producto/guardar}"
-                  method="post"
-                  th:object="${producto}">
-                <input type="hidden" name="idProducto" th:field="*{idProducto}" />
-                <label for="categoria" th:text="#{producto.categoria}">Categoría: </label>
-                <select th:field="*{idCategoria}">
-                    <option th:each="categoria : ${categorias}"
-                            th:value="${categoria.idCategoria}"
-                            th:text="${categoria.descripcion}" />
-                </select>
-                <br/>
-                <label for="descripcion" th:text="#{producto.descripcion}">Descripción: </label>
-                <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}" />
-                <br/>
-                <label for="detalle" th:text="#{producto.detalle}">Detalle: </label>
-                <input type="text" id="detalle" name="detalle" th:field="*{detalle}" />
-                <br/>
-                <label for="precio" th:text="#{producto.precio}">Precio: </label>
-                <input type="number" id="precio" name="precio" th:field="*{precio}" />
-                <br/>
-                <label for="existencias" th:text="#{producto.existencias}">Existencias: </label>
-                <input type="number" id="existencias" name="existencias" th:field="*{existencias}" />
-                <br/>
-                <br/>
-                <input type="submit" name="Guardar" th:value="#{accion.guardar}" />
-            </form>
-        </div>
+        <section th:replace="producto/fragmentosProducto :: editarProducto"/> 
         <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>
