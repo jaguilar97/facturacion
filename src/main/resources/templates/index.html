@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>FactuSoft</title>
         <meta charset="UTF-8">
@@ -12,41 +12,5 @@
         <div th:replace="layout/plantilla :: barraLateral"/>
 
         <footer th:replace="layout/plantilla :: footer" />
-    </body>
-</html>-->
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://wwww.thymeleaf.org" 
-      xmlns:sec="http://thymeleaft.org/extras/spring-security">
-    <head th:replace="layout/plantilla :: head">
-        <title>TechShop</title>
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header"/>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-            <div class="col-12">
-            <div style="text-align: center">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-lg">
-                        <i class="fas fa-receipt"></i> [[#{accion.facturar}]]
-                    </button>
-                </div>
-            </div>
-            <br>
-            <div style="text-align: center">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-danger btn-lg">
-                        <i class="fas fa-reply"></i> [[#{accion.nota}]]
-                    </button>
-                </div>
-            </div>
-                </div>
-        <footer th:replace="layout/plantilla :: footer"/>
     </body>
 </html>

@@ -1,7 +1,6 @@
 package com.Facturacion.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,21 +17,20 @@ public class Producto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_producto")
     private Long idProducto;
     private Long idCategoria;
     private String descripcion;
     private int precio;
-    private int existencias;
+    private int exitencias;
 
     public Producto() {
     }
 
-    public Producto(Long idCategoria, String descripcion, int precio, int existencias) {
+    public Producto(Long idCategoria, String descripcion, int precio, int exitencias) {
         this.idCategoria = idCategoria;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.existencias = existencias;
+        this.exitencias = exitencias;
     }
     
 }
