@@ -1,51 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <head align="center">
-        <title>FactuSoft</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/css/formatos.css}"/>
+<html xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
-    <br>
-    <br>
-    <body align="center">
-        <header th:replace="layout/plantilla :: header"/>
-        <div class="contenido" align="center">
-            <br>
-            <h2 th:text="#{categoria.titulo}">Listado de Categorias</h2>
-            <br>
-            <a th:href="@{/categoria/nuevo}" th:text="#{categoria.nuevo}">Nueva Categoría</a>
-            <br>
-            <br>
-            <div th:if="${categorias != null and !categorias.empty}">
-                <table border="5">
-                    <thead>
-                            <th th:text="#{categoria.descripcion}">Descripción</th>
-                            <th th:text="#{accion.actualizar}"></th>
-                            <th th:text="#{accion.eliminar}"></th>
-                        </tr>
-                    </thead>
-                    <tbody align="center">
-                        <tr th:each="item : ${categorias}">
-                            <td th:text="${item.descripcion}"></td>
-                            <td><a th:href="@{/categoria/modificar/} + ${item.idCategoria}"
-                                   th:text="#{accion.actualizar}">Modificar</a></td>
-                            <td><a th:href="@{/categoria/eliminar/} + ${item.idCategoria}"
-                                   th:text="#{accion.eliminar}">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <br>
-                <div>
-                    <a th:href="@{/}" th:text="#{accion.regresar}">Regresar</a>
-                </div>  
-            </div>
+    <body>
+        <header th:replace="layout/plantilla :: header" />
 
-            <div th:if="${categorias == null or categorias.empty}">
-                <p th:text="#{categoria.no_mostrar}"></p>
-            </div>
-        </div>
+        <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
+        <section th:replace="categoria/fragmentosCategoria :: agregarCategoria"/>
+        <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>
+
         <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

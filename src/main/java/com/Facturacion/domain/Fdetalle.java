@@ -1,7 +1,6 @@
 package com.Facturacion.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,28 +10,29 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="producto")
-public class Producto implements Serializable {
+@Table(name="fdetalle")
+public class Fdetalle implements Serializable {
     
     private static final long serialVersionOID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_producto")
+    private Long idDetalle;
+    private Long idFactura;
     private Long idProducto;
-    private Long idCategoria;
-    private String descripcion;
     private int precio;
-    private int existencias;
+    private int cantidad;
 
-    public Producto() {
+    public Fdetalle() {
     }
 
-    public Producto(Long idCategoria, String descripcion, int precio, int existencias) {
-        this.idCategoria = idCategoria;
-        this.descripcion = descripcion;
+    public Fdetalle(Long idFactura, Long idProducto, int precio, int cantidad) {
+        this.idFactura = idFactura;
+        this.idProducto = idProducto;
         this.precio = precio;
-        this.existencias = existencias;
+        this.cantidad = cantidad;
     }
+    
+    
     
 }

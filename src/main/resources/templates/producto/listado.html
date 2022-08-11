@@ -1,50 +1,16 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/css/plantilla.css}" />
+<html xmlns:sec="http://thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header" />
 
-        <div class="contenido">
-            <h2 th:text="#{producto.titulo}">Lista de productos</h2>
-            <a th:href="@{/producto/nuevo}" th:text="#{producto.nuevo}">Nuevo</a>
-            <div th:if="${productos != null and !productos.empty}">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th th:text="#{producto.descripcion}">Descripción</th>
-                            <th th:text="#{producto.precio}">Precio</th>
-                            <th th:text="#{producto.existencias}">Existencias</th>
-                            <th th:text="#{accion.actualizar}"></th>
-                            <th th:text="#{accion.eliminar}"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="item : ${productos}">
-                            <td th:text="${item.descripcion}"></td>
-                            <td th:text="${#numbers.formatDecimal(item.precio, 3, 2)}"></td>
-                            <td th:text="${item.existencias}"></td>
-                            <td><a th:href="@{/producto/modificar/} + ${item.idProducto}"
-                                   th:text="#{accion.actualizar}">Modificar</a></td>
-                            <td><a th:href="@{/producto/eliminar/} + ${item.idProducto}"
-                                   th:text="#{accion.eliminar}">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <br>
-                <div>
-                    <a th:href="@{/}" th:text="#{accion.regresar}">Regresar</a>
-                </div>
-            </div>
-            <div th:if="${productos == null or productos.empty}">
-                <p th:text="#{producto.no_mostrar}"></p>
-            </div>
-        </div>
+        <section th:replace="producto/fragmentosProducto :: botonesAgregar"/>
+        <section th:replace="producto/fragmentosProducto :: agregarProducto"/>
+        <section th:replace="producto/fragmentosProducto :: listadoProductos"/>
 
         <footer th:replace="layout/plantilla :: footer" />
     </body>
