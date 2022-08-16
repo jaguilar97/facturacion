@@ -1,40 +1,36 @@
 package com.Facturacion.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
-
 @Data
 @Entity
-@Table(name="fencabezado")
-public class Fencabezado implements Serializable {
+@Table(name="ncredito")
+public class NotaCredito implements Serializable {
     
     private static final long serialVersionOID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_factura")
+    @Column(name="id_nota")
+    private Long idNota;
     private Long idFactura;
-    private Long idCliente;
-    Date fecha;
-    private int total;
+    private int monto;
 
-    public Fencabezado() {
+    public NotaCredito() {
     }
 
-    public Fencabezado(Long idCliente, Date fecha, int total) {
-        this.idCliente = idCliente;
-        this.fecha = fecha;
-        this.total = total;
+    public NotaCredito(Long idFactura, int monto) {
+        this.idFactura = idFactura;
+        this.monto = monto;
     }
+    
+    
     
 }

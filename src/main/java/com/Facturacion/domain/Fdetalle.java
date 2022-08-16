@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -19,20 +21,20 @@ public class Fdetalle implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalle;
     private Long idFactura;
-    private Long idProducto;
+    @JoinColumn(name="id_producto", referencedColumnName = "id_producto")
+    @ManyToOne
+    private Producto producto;
     private int precio;
     private int cantidad;
 
     public Fdetalle() {
     }
 
-    public Fdetalle(Long idFactura, Long idProducto, int precio, int cantidad) {
+    public Fdetalle(Long idFactura, Producto producto, int precio, int cantidad) {
         this.idFactura = idFactura;
-        this.idProducto = idProducto;
+        this.producto = producto;
         this.precio = precio;
         this.cantidad = cantidad;
     }
-    
-    
     
 }

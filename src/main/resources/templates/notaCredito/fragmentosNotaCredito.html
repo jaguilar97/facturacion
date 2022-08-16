@@ -1,0 +1,56 @@
+<html>
+    <head th:replace="layout/plantilla :: head">
+        <title>FactuSoft</title>
+    </head>
+    <body>
+        <section th:fragment="agregarNotaCredito">
+            <div id="agregarFencabezado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Guardar Factura</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                    <form th:action="@{/notaCredito/guardar}" th:object="${notaCredito}"
+                          method="POST" class="was-validated">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="idFactura" th:text="#{nota.factura}">Factura</label>
+                                <input type="text" class="form-control" name="idFactura" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="monto" th:text="#{nota.monto}">Nota</label>
+                                <input type="number" class="form-control" name="monto" required="true">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light text-center">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/fencabezado/eliminar/}+${fencabezado.idFactura}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </body>
+</html>

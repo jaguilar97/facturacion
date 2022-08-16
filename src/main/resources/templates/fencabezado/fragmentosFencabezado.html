@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout/plantilla :: head">
+        <title>FactuSoft</title>
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarFencabezado">
+                            <i class="fas fa-plus"></i> [[#{accion.agregarFactura}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="listadoFencabezado" id="fencabezados">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{factura.titulo}]]</h4>
+                            </div>
+                            <div th:if="${fencabezados != null and !fencabezados.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Consecutivo</th>
+                                            <th th:text="#{factura.cliente}">Cliente</th>
+                                            <th th:text="#{factura.fecha}">Fecha</th>
+                                            <th th:text="#{factura.total}">Total</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="fencabezado, contador : ${fencabezados}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${fencabezado.idCliente}]]</td>
+                                            <td>[[${fencabezado.fecha}]]</td>
+                                            <td>[[${fencabezado.total}]]</td>
+                                            <td>
+                                                <button 
+                                                    type="button"
+                                                    class="btn btn-danger" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#agregarNotaCredito">
+                                                    <i class="fas fa-eraser"></i> [[#{accion.agregar}]]
+                                                </button>
+                                            </td>
+<!--                                            <td>
+                                                <a th:href="@{/fencabezado/modificar/}+${fencabezado.idFactura}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${fencabezados == null or fencabezados.empty}">
+                                <span th:text="#{factura.no_mostrar}">Lista vacía</span>
+                            </div>
+                            <div class="card text-center bg-success text-white mb-3">
+                                <div class="card-body">
+                                    <h3 th:text="#{factura.totalFacturas}">Total Facturas</h3>
+                                    <h4 class="display-4">
+                                        <i class="fas fa-money-bill"></i> [[${totalFencabezados}]]
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="agregarFencabezado">
+            <div id="agregarFencabezado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Guardar Factura</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/fencabezado/guardar}" th:object="${fencabezdo}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="idCliente" th:text="#{factura.cliente}">Cliente</label>
+                                    <input type="text" class="form-control" name="idCliente" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha" th:text="#{factura.fecha}">Fecha</label>
+                                    <input type="date" class="form-control" name="fecha" required="true">
+                                </div>
+                                    <div class="form-group">
+                                        <label for="idProducto" th:text="#{factura.producto}">Producto</label>
+                                        <input type="text" class="form-control" name="idProducto" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cantidad" th:text="#{factura.cantidad}">Cantidad</label>
+                                        <input type="cantidad" class="form-control" name="cantidad" required="true">
+                                    </div>
+                                <div class="form-group">
+                                    <label for="total" th:text="#{factura.total}">Total</label>
+                                    <input type="number" class="form-control" name="total" required="true">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="editarFencabezado">            
+            <form method="POST"
+                  th:action="@{/fencabezado/guardar}"
+                  th:object="${fencabezado}"
+                  class="was-validated">
+                <input type="hidden" name="idFactura" th:field="*{idFactura}"/>
+            <section> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="col-md-3">
+                                        <a th:href="@{/fencabezado/listado}" class="btn btn-ligth btn-block">
+                                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                                        </a>
+                                    </div>
+                                    <div class="card-header">
+                                        <h4>[[#{accion.editarFactura}]]</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="idCliente" th:text="#{factura.cliente}">Cliente</label>
+                                            <input type="text" class="form-control" name="idCliente" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fecha" th:text="#{factura.fecha}">Fecha</label>
+                                            <input type="date" class="form-control" name="fecha" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idProducto" th:text="#{factura.producto}">Producto</label>
+                                            <input type="text" class="form-control" name="idProducto" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cantidad" th:text="#{factura.cantidad}">Cantidad</label>
+                                            <input type="cantidad" class="form-control" name="cantidad" required="true">
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label for="total" th:text="#{factura.total}">Total</label>
+                                            <input type="number" class="form-control" name="total" required="true">
+                                        </div>-->
+                                        <div th:replace="fencabezado/fragmentosFencabezado :: botonesEditar"></div>
+                                    </div>                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+                
+        <section>
+            <div class="card text-center bg-success text-white mb-3 col-6 align-center">
+                <div class="card-body">
+                    <h3 th:text="#{factura.totalFacturas}">Total Facturas</h3>
+                    <h4 class="display-4">
+                        <i class="fas fa-money-bill"></i> [[${totalFencabezados}]]
+                    </h4>
+                </div>
+            </div>
+        </section>
+                
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light text-center">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/fencabezado/eliminar/}+${fencabezado.idFactura}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                
+                
+        <section th:fragment="agregarNotaCredito">
+            <div id="agregarFencabezado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Guardar Factura</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                    <form th:action="@{/notaCredito/guardar}" th:object="${notaCredito}"
+                          method="POST" class="was-validated">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="idFactura" th:text="#{nota.factura}">Factura</label>
+                                <input type="text" class="form-control" name="idFactura" required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="monto" th:text="#{nota.monto}">Nota</label>
+                                <input type="number" class="form-control" name="monto" required="true">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+                
+        
+    </body>
+</html>
