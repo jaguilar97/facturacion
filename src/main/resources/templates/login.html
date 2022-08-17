@@ -5,7 +5,7 @@
     <head th:replace="layout/plantilla :: head">
         <title>Login</title>
     </head>
-    <header th:replace="layout/plantilla :: header"></header>
+    <header></header>
 
         <section id="actions" class="py-4 mb-4 bg-light">
             <div class="container">
@@ -19,23 +19,36 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header w3-container w3-teal">
                                 <h4>[[#{login.login}]]</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" th:action="@{/login}">
                                     <div class="row py-1 mb-2 bg-light">
                                         <div class="form-group">
-                                            <label for="username">[[#{login.username}]]:</label>
-                                            <input type="text" name="username" id="username"/>
+                                            <div>
+                                                <label for="username">[[#{login.username}]]:</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" name="username" id="username"/>
+                                            </div>
+<!--                                            <label for="username">[[#{login.username}]]:</label>
+                                            <input type="text" name="username" id="username"/>-->
                                         </div>
                                     </div>
                                     <div class="row py-1 mb-2 bg-light">
                                         <div class="form-group">
-                                            <label for="password">[[#{login.password}]]:</label>
-                                            <input type="password" name="password" id="password"/>
+                                            <div>
+                                                <label for="password">[[#{login.password}]]:</label>
+                                            </div>
+                                            <div>
+                                                <input type="password" name="password" id="password"/>
+                                            </div>
+<!--                                            <label for="password">[[#{login.password}]]:</label>
+                                            <input type="password" name="password" id="password"/>-->
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row  py-1 mb-2 bg-light">
                                         <button type="submit" class="btn btn-primary btn-block">[[#{login.login}]]</button>                                        
                                     </div>

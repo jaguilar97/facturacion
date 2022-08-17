@@ -28,15 +28,14 @@ public class NotaCreditoController {
     }
     
     @PostMapping("/notaCredito/guardar")
-    public String guardarFencabezado(NotaCredito notaCredito, Fencabezado fencabezado){
+    public String guardarFencabezado(NotaCredito notaCredito/*, Fencabezado fencabezado*/){
         
-        fencabezado = fencabezadoService.getFencabezado(fencabezado);
+//        fencabezado = fencabezadoService.getFencabezado(fencabezado);
+//        
+//        fencabezado.setTotal(fencabezado.getTotal()-notaCredito.getMonto());
+        
         notaCreditoService.save(notaCredito);
-        
-        fencabezado.setTotal(fencabezado.getTotal()-notaCredito.getMonto());
-        
-        notaCreditoService.save(notaCredito);
-        return "redirect:/notaCredito/listado";
+        return "redirect:/";
         
     }
     
