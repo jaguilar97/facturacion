@@ -9,6 +9,18 @@
         <section th:replace="cliente/fragmentosCliente :: botonesAgregar"/>
         <section th:replace="cliente/fragmentosCliente :: agregarCliente"/>
         <section th:replace="cliente/fragmentosCliente :: listadoClientes"/>
+        
+        <section class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <a th:href="@{/cliente/ListadoClientes}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer th:replace="layout/plantilla :: footer" />
     </body>

@@ -9,6 +9,18 @@
         <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
         <section th:replace="categoria/fragmentosCategoria :: agregarCategoria"/>
         <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>
+        
+        <section class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <a th:href="@{/categoria/ListadoCategorias}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer th:replace="layout/plantilla :: footer" />
     </body>
