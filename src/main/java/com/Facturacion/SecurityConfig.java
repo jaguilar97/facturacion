@@ -23,16 +23,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/producto/nuevo", "/producto/guardar",
-                        "/producto/modificar/**", "/producto/eliminar/**",
-                        "/categoria/nuevo", "/categoria/guardar",
-                        "/categoria/modificar/**", "/categoria/eliminar/**",
-                        "/cliente/nuevo", "/cliente/guardar",
-                        "/cliente/modificar/**", "/cliente/eliminar/**",
-                        "/fencabezado/nuevo", "/fencabezado/guardar/",
-                        "/fencabezado/modificar/**", "/fencabezado/eliminar/**")
+                .antMatchers("/producto/eliminar/**", "/categoria/eliminar/**",
+                        "/cliente/eliminar/**", "/fencabezado/eliminar/**")
                 .hasRole("ADMIN")
-                .antMatchers("/producto/listado", "/cliente/listado",
+                .antMatchers("/producto/nuevo", "/producto/guardar",
+                        "/producto/modificar/**",
+                        "/categoria/nuevo", "/categoria/guardar",
+                        "/categoria/modificar/**",
+                        "/cliente/nuevo", "/cliente/guardar",
+                        "/cliente/modificar/**",
+                        "/fencabezado/nuevo", "/fencabezado/guardar/",
+                        "/fencabezado/modificar/**",
+                        "/producto/listado", "/cliente/listado",
                         "/categoria/listado", "/")
                 .hasAnyRole("ADMIN", "VENDEDOR")
                 .and()
