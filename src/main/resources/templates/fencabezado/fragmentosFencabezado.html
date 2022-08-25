@@ -47,13 +47,10 @@
                                             <td>[[${fencabezado.fecha}]]</td>
                                             <td>[[${fencabezado.total}]]</td>
                                             <td>
-                                                <button 
-                                                    type="button"
-                                                    class="btn btn-danger" 
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#agregarNota">
-                                                    <i class="fas fa-eraser"></i> [[#{accion.agregar}]]
-                                                </button>
+                                                <a th:href="@{/fencabezado/modificar/}+${fencabezado.idFactura}"
+                                                   class="btn btn-danger btn-block">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
 <!--                                            <td>
                                                 <a th:href="@{/fencabezado/modificar/}+${fencabezado.idFactura}"

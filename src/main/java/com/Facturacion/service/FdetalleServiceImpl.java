@@ -44,6 +44,6 @@ public class FdetalleServiceImpl implements FdetalleService {
     @Override
     public void deleteAll(Long idFactura) {
         fdetalleDao.deleteByIdFactura(idFactura);
-    } 
+    }
     
 }

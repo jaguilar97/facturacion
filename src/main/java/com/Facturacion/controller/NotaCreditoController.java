@@ -15,7 +15,7 @@ public class NotaCreditoController {
     private NotaCreditoService notaCreditoService;
     
     @Autowired
-    private FencabezadoService fencabezadoService;
+    private FencabezadoController fencabezadocontroller;
     
     @GetMapping("/notaCredito/listado")
     public String inicio(Model model){

@@ -2,9 +2,11 @@ package com.Facturacion.controller;
 
 import com.Facturacion.domain.Fdetalle;
 import com.Facturacion.domain.Fencabezado;
+import com.Facturacion.domain.NotaCredito;
 import com.Facturacion.domain.Producto;
 import com.Facturacion.service.FdetalleService;
 import com.Facturacion.service.FencabezadoService;
+import com.Facturacion.service.NotaCreditoService;
 import com.Facturacion.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,12 @@ public class FencabezadoController {
     @Autowired
     private ProductoService productoService;
     
+    @Autowired
+    private NotaCreditoService notaCreditoService;
+    
+    @Autowired
+    private NotaCreditoService notaService;
+    
     @GetMapping("/fencabezado/listado")
     public String inicio(Model model){
         
@@ -35,7 +43,11 @@ public class FencabezadoController {
     }
     
     @GetMapping("/fencabezado/nuevo")
-    public String nuevoFencabezado(Fencabezado fencabezado){
+    public String nuevoFencabezado(Fencabezado fencabezado, Model model){
+        
+        var productos = productoService.getProductos();
+        model.addAttribute("productos", productos);
+        
         return "/fencabezado/modificar";
     }
     
@@ -43,7 +55,9 @@ public class FencabezadoController {
     public String guardarFencabezado(Fencabezado fencabezado, Producto producto){
         
         producto = productoService.getProducto(producto);
+        
         fencabezadoService.save(fencabezado);
+        
         Long idFactura = fencabezado.getIdFactura();
         Fdetalle fdetalle = fdetalleService.getFdetalle(idFactura, producto);
         
@@ -58,10 +72,19 @@ public class FencabezadoController {
     }
     
     @GetMapping("/fencabezado/modificar/{idFactura}")
-    public String modificarFencabezado(Fencabezado fencabezado, Model model){
+    public String modificarFencabezado(Fencabezado fencabezado, NotaCredito notaCredito, Model model){
+        
         fencabezado = fencabezadoService.getFencabezado(fencabezado);
         model.addAttribute("fencabezado", fencabezado);
-        return "/fencabezado/modificar";
+        //Long idFactura = fencabezado.getIdFactura();
+        
+        //NotaCredito notaCredito = notaService.getNotaCredito(idFactura);
+        notaCredito = new NotaCredito(fencabezado.getIdFactura(),fencabezado.getTotal());
+        
+        notaCreditoService.save(notaCredito);
+        
+        return "redirect:/";
+        
     }
     
     @GetMapping("/fencabezado/eliminar/{idFactura}")

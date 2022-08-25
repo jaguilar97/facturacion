@@ -12,6 +12,11 @@ public class NotaCreditoServiceImpl implements NotaCreditoService {
     
     @Autowired
     private NotaCreditoDao notaCreditoDao;
+    
+    @Override
+    public NotaCredito getNotaCredito(Long idFactura) {
+        return notaCreditoDao.findByIdFactura(idFactura).orElse(null);
+    }
 
     @Override
     @Transactional(readOnly=true)
