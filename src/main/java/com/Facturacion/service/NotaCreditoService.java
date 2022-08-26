@@ -5,9 +5,7 @@ import java.util.List;
 
 public interface NotaCreditoService {
     
-    NotaCredito getNotaCredito(Long idFactura);
-    
-    public List<NotaCredito> getNotaCreditos();
+    public List<NotaCredito> getNotasCredito();
     
     public NotaCredito getNotaCredito(NotaCredito notaCredito);
     

@@ -7,7 +7,7 @@
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">   
+                    <div class="col-md-7">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -15,6 +15,12 @@
                             data-bs-target="#agregarCliente">
                             <i class="fas fa-plus"></i> [[#{accion.agregar}]]
                         </button>
+                    </div>
+                    <br>
+                    <div class="col-md-3">
+                        <a th:href="@{/cliente/ListadoClientes}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +52,7 @@
                                             <td>[[${cliente.correo}]]</td>
                                             <td>
                                                 <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
-                                                   class="btn btn-danger">
+                                                   class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -192,7 +198,7 @@
                         </div>
                         <div class="col-md-3">
                             <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
-                               class="btn btn-danger btn-block">
+                               class="btn btn-danger btn-block" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
                         </div>

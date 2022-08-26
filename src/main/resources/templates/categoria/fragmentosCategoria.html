@@ -10,7 +10,7 @@
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">   
+                    <div class="col-md-7">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -18,6 +18,12 @@
                             data-bs-target="#agregarCategoria">
                             <i class="fas fa-plus"></i> [[#{accion.agregar}]]
                         </button>
+                    </div>
+                    <br>
+                    <div class="col-md-3">
+                        <a th:href="@{/categoria/ListadoCategorias}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
                     </div>
                 </div>
             </div>
@@ -162,7 +168,7 @@
                         </div>
                         <div class="col-md-3">
                             <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
-                               class="btn btn-danger btn-block">
+                               class= "btn btn-danger btn-block" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
                         </div>

@@ -7,7 +7,7 @@
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">   
+                    <div class="col-md-7">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -15,6 +15,11 @@
                             data-bs-target="#agregarFencabezado">
                             <i class="fas fa-plus"></i> [[#{accion.agregarFactura}]]
                         </button>
+                    </div>
+                    <div class="col-md-3">
+                        <a th:href="@{/fencabezado/ListadoFacturas}"
+                           class="btn btn-primary">
+                            <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
                     </div>
                 </div>
             </div>
@@ -49,15 +54,9 @@
                                             <td>
                                                 <a th:href="@{/fencabezado/modificar/}+${fencabezado.idFactura}"
                                                    class="btn btn-danger btn-block">
-                                                    <i class="fas fa-trash"></i>
+                                                    <i class="fas fa-eraser"></i> [[#{plantilla.notacredito}]]
                                                 </a>
                                             </td>
-<!--                                            <td>
-                                                <a th:href="@{/fencabezado/modificar/}+${fencabezado.idFactura}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -122,10 +121,14 @@
         
         <section th:fragment="editarFencabezado">            
             <form method="POST"
-                  th:action="@{/fencabezado/guardar}"
-                  th:object="${fencabezado}"
+                  th:action="@{/nota/guardar}"
+                  th:object="${notaCredito}"
                   class="was-validated">
+                <div th:object="${fencabezado}">
                 <input type="hidden" name="idFactura" th:field="*{idFactura}"/>
+                <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+                <input type="hidden" name="fecha" th:field="*{fecha}"/>
+                <input type="hidden" name="total" th:field="*{total}"/>
             <section> 
                 <div id="details">
                     <div class="container">
@@ -138,29 +141,13 @@
                                         </a>
                                     </div>
                                     <div class="card-header">
-                                        <h4>[[#{accion.editarFactura}]]</h4>
+                                        <h4>[[#{plantilla.notacredito}]]</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="idCliente" th:text="#{factura.cliente}">Cliente</label>
-                                            <input type="text" class="form-control" name="idCliente" required="true">
+                                            <label for="monto" th:text="#{nota.monto}">Monto</label>
+                                            <input type="number" class="form-control" name="monto" required="true">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="fecha" th:text="#{factura.fecha}">Fecha</label>
-                                            <input type="date" class="form-control" name="fecha" required="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="idProducto" th:text="#{factura.producto}">Producto</label>
-                                            <input type="text" class="form-control" name="idProducto" required="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cantidad" th:text="#{factura.cantidad}">Cantidad</label>
-                                            <input type="cantidad" class="form-control" name="cantidad" required="true">
-                                        </div>
-                                        <!--<div class="form-group">
-                                            <label for="total" th:text="#{factura.total}">Total</label>
-                                            <input type="number" class="form-control" name="total" required="true">
-                                        </div>-->
                                         <div th:replace="fencabezado/fragmentosFencabezado :: botonesEditar"></div>
                                     </div>                
                                 </div>
@@ -168,8 +155,9 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </section>
+            </section>
+            </div>
+        </form>
                 
         <section>
             <div class="card text-center bg-success text-white mb-3 col-6 align-center">

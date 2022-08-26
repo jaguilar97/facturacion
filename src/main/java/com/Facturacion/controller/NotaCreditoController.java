@@ -2,7 +2,6 @@ package com.Facturacion.controller;
 
 import com.Facturacion.domain.Fencabezado;
 import com.Facturacion.domain.NotaCredito;
-import com.Facturacion.service.FencabezadoService;
 import com.Facturacion.service.NotaCreditoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,13 +13,10 @@ public class NotaCreditoController {
     @Autowired
     private NotaCreditoService notaCreditoService;
     
-    @Autowired
-    private FencabezadoController fencabezadocontroller;
-    
     @GetMapping("/notaCredito/listado")
     public String inicio(Model model){
         
-        var notasCredito=notaCreditoService.getNotaCreditos();
+        var notasCredito=notaCreditoService.getNotasCredito();
         model.addAttribute("totalNotasCredito",notasCredito.size());
         model.addAttribute("notasCredito", notasCredito);
         
@@ -28,21 +24,10 @@ public class NotaCreditoController {
     }
     
     @PostMapping("/notaCredito/guardar")
-    public String guardarFencabezado(NotaCredito notaCredito/*, Fencabezado fencabezado*/){
-        
-//        fencabezado = fencabezadoService.getFencabezado(fencabezado);
-//        
-//        fencabezado.setTotal(fencabezado.getTotal()-notaCredito.getMonto());
-        
+    public String guardarFencabezado(NotaCredito notaCredito){
         notaCreditoService.save(notaCredito);
         return "redirect:/";
         
-    }
-    
-    @GetMapping("/notaCredito/eliminar/{idFactura}")
-    public String eliminarNotaCredito(NotaCredito notaCredito){
-        notaCreditoService.delete(notaCredito);
-        return "redirect:/notaCredito/listado";
     }
     
 }
