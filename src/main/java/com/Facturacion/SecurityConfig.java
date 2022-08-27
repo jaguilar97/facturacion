@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fencabezado/nuevo", "/fencabezado/guardar/",
                         "/fencabezado/modificar/**",
                         "/producto/listado", "/cliente/listado",
-                        "/categoria/listado", "/")
+                        "/categoria/listado", "/notaCredito/listado", "/")
                 .hasAnyRole("ADMIN", "VENDEDOR")
                 .and()
                 .formLogin()

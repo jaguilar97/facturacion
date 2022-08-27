@@ -11,6 +11,16 @@
     left: 0;
     width: 100%;
 }
+
+.fondo {
+    font-family: cursive;
+    background-color: darkseagreen;
+    height: 10.5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .barraLateral {
     position: absolute;
     top: 10.5%;

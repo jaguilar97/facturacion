@@ -8,9 +8,10 @@
         <section th:fragment="listadoProductos" id="productos">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
+                        <br>
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-9">
                                 <a th:href="@{/producto/nuevo}" class="btn btn-ligth btn-block">
                                     <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                                 </a>
@@ -18,9 +19,10 @@
                             <div class="col-md-3">
                                 <a th:href="@{/producto/ListadoProductos}"
                                    class="btn btn-primary">
-                                    <i class="fas fa-file-pdf"></i> Obtener en PDF</a>
+                                    <i class="fas fa-file-pdf"></i> [[#{index.pdf}]]</a>
                             </div>
                         </div>
+                        <br>
                         <div class="card">
                             <div class="card-header">
                                 <h4>[[#{producto.titulo}]]</h4>
@@ -145,7 +147,7 @@
                                         <br>
                                         <label for="categoria" th:text="#{producto.categoria}">Categoría</label>
                                         <div class="form-group">
-                                            <select th:field="*{idCategoria}">
+                                            <select th:field="*{idCategoria}" class="form-control">
                                                 <option th:each="categoria : ${categorias}"
                                                         th:value="${categoria.idCategoria}"
                                                         th:text="${categoria.descripcion}" />
@@ -195,7 +197,7 @@
                         <div class="col-md-7">
                             <a th:href="@{/producto/listado}"
                                class="btn btn-primary btn-block">
-                                <i class="fas fa-tools"> Listado</i>
+                                <i class="fas fa-tools"> [[#{plantilla.lista}]]</i>
                             </a>
                         </div>
                     </div>

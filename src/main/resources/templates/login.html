@@ -5,7 +5,14 @@
     <head th:replace="layout/plantilla :: head">
         <title>Login</title>
     </head>
-    <header></header>
+    <header th:fragment="header" class="header">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 w3-container w3-blue-grey">
+            <div class="container">
+                <h1>FactuSoft</h1>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    </header>
 
         <section id="actions" class="py-4 mb-4 bg-light">
             <div class="container">
